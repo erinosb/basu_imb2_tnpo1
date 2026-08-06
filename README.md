@@ -8,7 +8,7 @@
 
 #### Authors
 
-Ambika Basu1<sup>1</sup>, Nora Tayefeh<sup>1</sup>, Lindsay P Winkenbach<sup>1</sup>, Sam Zavislan-Pullaro<sup>1</sup>, Erin Osborne Nishimura<sup>1</sup>†\*
+Ambika Basu1<sup>1</sup>, Nora Tayefeh<sup>1</sup>, Lindsay P Winkenbach<sup>1</sup>, Sam Zavislan-Pullaro<sup>1</sup>, Erin Osborne Nishimura<sup>1</sup>\*
 
 #### Affiliations
 
