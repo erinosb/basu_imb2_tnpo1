@@ -44,29 +44,31 @@ Strain: N2
 # Load the data
 # Only need to replace name of file. EX: ("../01_input/<NAME_OF_DATAFILE.txt>",header = FALSE, sep = "\t")
 
-df_1 <- read.table("../01_input/2026-7-20_1510_datafile_for_250806_set3_imb2_rep1.txt",
+df_1 <- read.table("../01_input/2026-7-20_1510_datafile_for_250806A_set3_imb2_rep1.txt",
                         header = FALSE, sep = "\t")
-df_2 <- read.table("../01_input/2026-7-20_1518_datafile_for_250806_set3_imb2_rep2.txt",
+df_2 <- read.table("../01_input/2026-7-20_1518_datafile_for_250806B_set3_imb2_rep2.txt",
                         header = FALSE, sep = "\t")
-df_3 <- read.table("../01_input/2026-7-20_1525_datafile_for_250806_set3_imb2_rep3.txt",
+df_3 <- read.table("../01_input/2026-7-20_1525_datafile_for_250807_set3_imb2_rep3.txt",
                         header = FALSE, sep = "\t")
 df_4 <- read.table("../01_input/2026-8-3_128_datafile_for_260527_N2_imb2_set3.txt",
-                        header = FALSE, sep = "\t")
-df_5 <- read.table("../01_input/2026-8-3_1212_datafile_for_260527_N2_imb2_set3.txt",
                         header = FALSE, sep = "\t")
 
 # Check dimensions
 # In this case, all data files should have vector length = 121. This is determined by the length of the ROI box in FIJI
 
-#dim(df_1)
+dim(df_1)
 #dim(df_2)
 #dim(df_3)
 #dim(df_4)
-#dim(df_5)
+
+df_1 <- df_1[,1:120]
+df_2 <- df_2[,1:120]
+df_3 <- df_3[,1:120]
+df_4 <- df_4[,1:120]
 
 # The value 119 is actually determined by the dimensions, just subtract 2 from what you get in dimensions
 
-col_times <- paste(rep(1:119), sep = "") 
+col_times <- paste(rep(1:118), sep = "") 
 
 # Set column names for the dataframes 
 
@@ -74,7 +76,8 @@ colnames(df_1) <- c("file", "channel", col_times)
 colnames(df_2) <- c("file", "channel", col_times)
 colnames(df_3) <- c("file", "channel", col_times)
 colnames(df_4) <- c("file", "channel", col_times)
-colnames(df_5) <- c("file", "channel", col_times)
+
+head(df_1)
 
 ```
 
@@ -88,17 +91,17 @@ Timepoints are treated as positions along line scan
 
 # Helper function: pivot longer and annotate 
 annotate_df <- function(df) {
-  df[2:nrow(df), 1:121] %>% # 121 comes from dimensions
+  df[2:nrow(df), 1:120] %>% # 120 comes from dimensions
     separate_wider_delim(file, delim = "_",
                          names = c("date", "strain", "mRNA1", "mRNA2", "embryoID", NA)) %>%
-    pivot_longer(cols = `1`:`119`, names_to = "xpoint", values_to = "intensity") %>%
+    pivot_longer(cols = `1`:`118`, names_to = "xpoint", values_to = "intensity") %>%
     mutate(unique_id = paste(date, strain, mRNA1, mRNA2, embryoID, channel, sep = "_"))
 }
 
 # Helper function: add timepoints from the header row of any loaded table
 addInTimepoints <- function(tibble, ref_table) {
-  timepoints <- as.vector(unlist(ref_table[1, 3:121]))
-  repnumb    <- nrow(tibble) / 119 
+  timepoints <- as.vector(unlist(ref_table[1, 3:120]))
+  repnumb    <- nrow(tibble)/118
   tibble::add_column(tibble, timepoints = rep(timepoints, repnumb), .after = "xpoint")
 }
 
@@ -107,10 +110,10 @@ df_1_pt <- addInTimepoints(annotate_df(df_1), df_1) # Use first dataframe as ref
 df_2_pt <- addInTimepoints(annotate_df(df_2), df_1)
 df_3_pt <- addInTimepoints(annotate_df(df_3), df_1)
 df_4_pt <- addInTimepoints(annotate_df(df_4), df_1)
-df_5_pt <- addInTimepoints(annotate_df(df_5), df_1)
 
 # Sanity check 
-head(df_1_pt)
+head(df_4_pt)
+#df_4_pt[110:120,]
 
 ```
 
@@ -122,10 +125,10 @@ head(df_1_pt)
 
 # Concatenate the dataframes 
 all_data <- rbind(
-  df_1_pt, df_2_pt, df_3_pt, df_4_pt, df_5_pt
+  df_1_pt, df_2_pt, df_3_pt, df_4_pt
 )
 
-center <- ceiling(119/2) # Using dims, find center point 
+center <- ceiling(118/2) # Using dims, find center point 
 center
 
 dt <- as.data.table(all_data)

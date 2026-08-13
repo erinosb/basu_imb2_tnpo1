@@ -1,0 +1,239 @@
+Initiaiting macro: quantifyPlasmaMembraneRegion
+
+Date: 2026-8-3
+Time: 1431
+
+Input Directory: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/01_input
+Output Directory: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/03_output
+
+
+Will process the following DV files:
+	250802_slide2_image_02_R3D.dv
+	250802_slide2_image_03_R3D.dv
+	250802_slide2_image_05_R3D.dv
+	250802_slide2_image_09_R3D.dv
+	250802_slide2_image_11_R3D.dv
+	250802_slide2_image_12_R3D.dv
+	250802_slide2_image_13_R3D.dv
+
+Now processing file:	250802_slide2_image_02_R3D.dv
+	--Starting Z-projection
+	--There are 25 slices
+	--Splice Depth is: 5
+	--Z-projection complete from 5 to 11 using Sum Slices method.
+	--Evaluating Min and Max Thresholds
+	--Setting ch1min:1335
+	--Setting ch1max:25035.2344
+	--Setting ch2min:1187.3984
+	--Setting ch2max:4656.4102
+	--Setting ch3min:664.8398
+	--Setting ch3max:3348.3672
+	--Setting ch4min:664.8398
+	--Setting ch4max:3348.3672
+	--Setting Channel1 min: 1335
+	--Setting Channel1 max: 25035.2344
+	--Setting Channel2 min: 1187.3984
+	--Setting Channel2 max: 4656.4102
+	--Setting Channel3 min: 664.8398
+	--Setting Channel3 max: 3348.3672
+	--Setting Channel4 min: 664.8398
+	--Setting Channel4 max: 3348.3672
+	--Starting AP axis determination
+	--Anterior point: 541, 144
+	--Posterior point: 755.5, 46.1667
+	--AP axis angle: -24.5177 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 180 x 50, AP angle -24.5177 degrees. Bounding box: 552, 42, 186, 121
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/03_output/250802_slide2_image_02_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250802_slide2_image_03_R3D.dv
+	--Starting Z-projection
+	--There are 24 slices
+	--Splice Depth is: 5
+	--Z-projection complete from 6 to 12 using Sum Slices method.
+	--Setting Channel1 min: 1335
+	--Setting Channel1 max: 25035.2344
+	--Setting Channel2 min: 1187.3984
+	--Setting Channel2 max: 4656.4102
+	--Setting Channel3 min: 664.8398
+	--Setting Channel3 max: 3348.3672
+	--Setting Channel4 min: 664.8398
+	--Setting Channel4 max: 3348.3672
+	--Starting AP axis determination
+	--Anterior point: 536, 614
+	--Posterior point: 616.8333, 803.5
+	--AP axis angle: 66.8988 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 180 x 50, AP angle 66.8988 degrees. Bounding box: 507, 601, 117, 185
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/03_output/250802_slide2_image_03_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250802_slide2_image_05_R3D.dv
+	--Starting Z-projection
+	--There are 29 slices
+	--Splice Depth is: 5
+	--Z-projection complete from 11 to 17 using Sum Slices method.
+	--Setting Channel1 min: 1335
+	--Setting Channel1 max: 25035.2344
+	--Setting Channel2 min: 1187.3984
+	--Setting Channel2 max: 4656.4102
+	--Setting Channel3 min: 664.8398
+	--Setting Channel3 max: 3348.3672
+	--Setting Channel4 min: 664.8398
+	--Setting Channel4 max: 3348.3672
+	--Starting AP axis determination
+	--Anterior point: 596, 520
+	--Posterior point: 386.1667, 422.1667
+	--AP axis angle: -155.003 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 180 x 50, AP angle -155.003 degrees. Bounding box: 391, 400, 185, 122
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/03_output/250802_slide2_image_05_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250802_slide2_image_09_R3D.dv
+	--Starting Z-projection
+	--There are 27 slices
+	--Splice Depth is: 5
+	--Z-projection complete from 13 to 19 using Sum Slices method.
+	--Setting Channel1 min: 1335
+	--Setting Channel1 max: 25035.2344
+	--Setting Channel2 min: 1187.3984
+	--Setting Channel2 max: 4656.4102
+	--Setting Channel3 min: 664.8398
+	--Setting Channel3 max: 3348.3672
+	--Setting Channel4 min: 664.8398
+	--Setting Channel4 max: 3348.3672
+	--Starting AP axis determination
+	--Anterior point: 590, 182
+	--Posterior point: 788.8333, 166.1667
+	--AP axis angle: -4.5529 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 180 x 50, AP angle -4.5529 degrees. Bounding box: 586, 154, 184, 64
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/03_output/250802_slide2_image_09_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250802_slide2_image_11_R3D.dv
+	--Starting Z-projection
+	--There are 27 slices
+	--Splice Depth is: 5
+	--Z-projection complete from 6 to 12 using Sum Slices method.
+	--Setting Channel1 min: 1335
+	--Setting Channel1 max: 25035.2344
+	--Setting Channel2 min: 1187.3984
+	--Setting Channel2 max: 4656.4102
+	--Setting Channel3 min: 664.8398
+	--Setting Channel3 max: 3348.3672
+	--Setting Channel4 min: 664.8398
+	--Setting Channel4 max: 3348.3672
+	--Starting AP axis determination
+	--Anterior point: 396, 114
+	--Posterior point: 660.8334, 128.8333
+	--AP axis angle: 3.2058 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 180 x 50, AP angle 3.2058 degrees. Bounding box: 423, 88, 183, 60
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/03_output/250802_slide2_image_11_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250802_slide2_image_12_R3D.dv
+	--Starting Z-projection
+	--There are 28 slices
+	--Splice Depth is: 5
+	--Z-projection complete from 9 to 15 using Sum Slices method.
+	--Setting Channel1 min: 1335
+	--Setting Channel1 max: 25035.2344
+	--Setting Channel2 min: 1187.3984
+	--Setting Channel2 max: 4656.4102
+	--Setting Channel3 min: 664.8398
+	--Setting Channel3 max: 3348.3672
+	--Setting Channel4 min: 664.8398
+	--Setting Channel4 max: 3348.3672
+	--Starting AP axis determination
+	--Anterior point: 624, 850
+	--Posterior point: 651.5, 666.1667
+	--AP axis angle: -81.4921 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 180 x 50, AP angle -81.4921 degrees. Bounding box: 601, 654, 77, 186
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/03_output/250802_slide2_image_12_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+Initiaiting macro: quantifyPlasmaMembraneRegion
+
+Date: 2026-8-3
+Time: 1438
+
+Input Directory: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/01_input
+Output Directory: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/03_output
+
+
+Will process the following DV files:
+	250802_slide2_image_12_R3D.dv
+	250802_slide2_image_13_R3D.dv
+
+Now processing file:	250802_slide2_image_12_R3D.dv
+	--Starting Z-projection
+	--There are 28 slices
+	--Splice Depth is: 5
+	--Z-projection complete from 9 to 15 using Sum Slices method.
+	--Evaluating Min and Max Thresholds
+	--Setting ch1min:1382
+	--Setting ch1max:21355.4375
+	--Setting ch2min:1093.1719
+	--Setting ch2max:3788.875
+	--Setting ch3min:650.4297
+	--Setting ch3max:2871.9531
+	--Setting ch4min:650.4297
+	--Setting ch4max:2871.9531
+	--Setting Channel1 min: 1382
+	--Setting Channel1 max: 21355.4375
+	--Setting Channel2 min: 1093.1719
+	--Setting Channel2 max: 3788.875
+	--Setting Channel3 min: 650.4297
+	--Setting Channel3 max: 2871.9531
+	--Setting Channel4 min: 650.4297
+	--Setting Channel4 max: 2871.9531
+	--Starting AP axis determination
+	--Anterior point: 624, 852
+	--Posterior point: 654.1667, 668.8333
+	--AP axis angle: -80.6476 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 180 x 50, AP angle -80.6476 degrees. Bounding box: 596, 666, 79, 186
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/03_output/250802_slide2_image_12_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250802_slide2_image_13_R3D.dv
+	--Starting Z-projection
+	--There are 28 slices
+	--Splice Depth is: 5
+	--Z-projection complete from 1 to 7 using Sum Slices method.
+	--Setting Channel1 min: 1382
+	--Setting Channel1 max: 21355.4375
+	--Setting Channel2 min: 1093.1719
+	--Setting Channel2 max: 3788.875
+	--Setting Channel3 min: 650.4297
+	--Setting Channel3 max: 2871.9531
+	--Setting Channel4 min: 650.4297
+	--Setting Channel4 max: 2871.9531
+	--Starting AP axis determination
+	--Anterior point: 228, 421
+	--Posterior point: 411.5, 428.8333
+	--AP axis angle: 2.4444 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 180 x 50, AP angle 2.4444 degrees. Bounding box: 217, 395, 183, 58
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /U2OS/250802_TNPO1_U2OS_rep3/03_output/250802_slide2_image_13_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02

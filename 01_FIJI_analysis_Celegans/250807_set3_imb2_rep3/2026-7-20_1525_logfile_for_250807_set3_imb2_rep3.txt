@@ -1,0 +1,69 @@
+Initiaiting macro: quantifyPlasmaMembraneRegion
+
+Date: 2026-7-20
+Time: 1525
+
+Input Directory: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep3/01_input
+Output Directory: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep3/03_output
+
+
+Will process the following DV files:
+	250807_image_03_R3D.dv
+	250807_image_10_R3D.dv
+
+Now processing file:	250807_image_03_R3D.dv
+	--Starting Z-projection
+	--There are 60 slices
+	--Splice Depth is: 7
+	--Z-projection complete from 34 to 40 using Sum Slices method.
+	--Evaluating Min and Max Thresholds
+	--Setting ch1min:1091.6953
+	--Setting ch1max:7259.6914
+	--Setting ch2min:1804.9297
+	--Setting ch2max:9098.7383
+	--Setting ch3min:657.3906
+	--Setting ch3max:3073.5625
+	--Setting ch4min:657.3906
+	--Setting ch4max:3073.5625
+	--Setting Channel1 min: 1091.6953
+	--Setting Channel1 max: 7259.6914
+	--Setting Channel2 min: 1804.9297
+	--Setting Channel2 max: 9098.7383
+	--Setting Channel3 min: 657.3906
+	--Setting Channel3 max: 3073.5625
+	--Setting Channel4 min: 657.3906
+	--Setting Channel4 max: 3073.5625
+	--Starting AP axis determination
+	--Anterior point: 329, 578
+	--Posterior point: 280.8333, 495.5
+	--AP axis angle: -120.278 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 117 x 46, AP angle -120.278 degrees. Bounding box: 265, 491, 99, 125
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep3/03_output/250807_image_03_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250807_image_10_R3D.dv
+	--Starting Z-projection
+	--There are 59 slices
+	--Splice Depth is: 7
+	--Z-projection complete from 34 to 40 using Sum Slices method.
+	--Setting Channel1 min: 1091.6953
+	--Setting Channel1 max: 7259.6914
+	--Setting Channel2 min: 1804.9297
+	--Setting Channel2 max: 9098.7383
+	--Setting Channel3 min: 657.3906
+	--Setting Channel3 max: 3073.5625
+	--Setting Channel4 min: 657.3906
+	--Setting Channel4 max: 3073.5625
+	--Starting AP axis determination
+	--Anterior point: 773, 673
+	--Posterior point: 688.8333, 571.5
+	--AP axis angle: -129.6665 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 117 x 46, AP angle -129.6665 degrees. Bounding box: 688, 561, 111, 120
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep3/03_output/250807_image_10_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02

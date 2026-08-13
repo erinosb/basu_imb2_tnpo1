@@ -1,0 +1,151 @@
+Initiaiting macro: quantifyPlasmaMembraneRegion
+
+Date: 2026-7-20
+Time: 1518
+
+Input Directory: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep2/01_input
+Output Directory: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep2/03_output
+
+
+Will process the following DV files:
+	250806_R2_image_01_R3D.dv
+	250806_R2_image_02_R3D.dv
+	250806_R2_image_04_R3D.dv
+	250806_R2_image_05_R3D.dv
+	250806_R2_image_10_R3D.dv
+
+Now processing file:	250806_R2_image_01_R3D.dv
+	--Starting Z-projection
+	--There are 56 slices
+	--Splice Depth is: 7
+	--Z-projection complete from 19 to 25 using Sum Slices method.
+	--Evaluating Min and Max Thresholds
+	--Setting ch1min:911
+	--Setting ch1max:16372.25
+	--Setting ch2min:1574.5859
+	--Setting ch2max:13283.8906
+	--Setting ch3min:656
+	--Setting ch3max:4691.9375
+	--Setting ch4min:656
+	--Setting ch4max:4691.9375
+	--Setting Channel1 min: 911
+	--Setting Channel1 max: 16372.25
+	--Setting Channel2 min: 1574.5859
+	--Setting Channel2 max: 13283.8906
+	--Setting Channel3 min: 656
+	--Setting Channel3 max: 4691.9375
+	--Setting Channel4 min: 656
+	--Setting Channel4 max: 4691.9375
+	--Starting AP axis determination
+	--Anterior point: 445, 545
+	--Posterior point: 522.1667, 638.1667
+	--AP axis angle: 50.3662 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 117 x 46, AP angle 50.3662 degrees. Bounding box: 415, 510, 111, 120
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep2/03_output/250806_R2_image_01_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250806_R2_image_02_R3D.dv
+	--Starting Z-projection
+	--There are 60 slices
+	--Splice Depth is: 7
+	--Z-projection complete from 17 to 23 using Sum Slices method.
+	--Setting Channel1 min: 911
+	--Setting Channel1 max: 16372.25
+	--Setting Channel2 min: 1574.5859
+	--Setting Channel2 max: 13283.8906
+	--Setting Channel3 min: 656
+	--Setting Channel3 max: 4691.9375
+	--Setting Channel4 min: 656
+	--Setting Channel4 max: 4691.9375
+	--Starting AP axis determination
+	--Anterior point: 518, 742
+	--Posterior point: 419.5, 667.5
+	--AP axis angle: -142.8981 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 117 x 46, AP angle -142.8981 degrees. Bounding box: 433, 673, 121, 107
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep2/03_output/250806_R2_image_02_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250806_R2_image_04_R3D.dv
+	--Starting Z-projection
+	--There are 41 slices
+	--Splice Depth is: 7
+	--Z-projection complete from 13 to 19 using Sum Slices method.
+	--Setting Channel1 min: 911
+	--Setting Channel1 max: 16372.25
+	--Setting Channel2 min: 1574.5859
+	--Setting Channel2 max: 13283.8906
+	--Setting Channel3 min: 656
+	--Setting Channel3 max: 4691.9375
+	--Setting Channel4 min: 656
+	--Setting Channel4 max: 4691.9375
+	--Starting AP axis determination
+	--Anterior point: 569, 630
+	--Posterior point: 502.1667, 523.5
+	--AP axis angle: -122.11 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 117 x 46, AP angle -122.11 degrees. Bounding box: 501, 543, 93, 119
+	--User requested redo of AP points/rectangle
+	--Redo attempt #2 for AP points/rectangle
+	--Anterior point: 541, 640
+	--Posterior point: 487.5, 564.8333
+	--AP axis angle: -125.4414 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 117 x 46, AP angle -125.4414 degrees. Bounding box: 499, 538, 106, 122
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep2/03_output/250806_R2_image_04_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250806_R2_image_05_R3D.dv
+	--Starting Z-projection
+	--There are 44 slices
+	--Splice Depth is: 7
+	--Z-projection complete from 23 to 29 using Sum Slices method.
+	--Setting Channel1 min: 911
+	--Setting Channel1 max: 16372.25
+	--Setting Channel2 min: 1574.5859
+	--Setting Channel2 max: 13283.8906
+	--Setting Channel3 min: 656
+	--Setting Channel3 max: 4691.9375
+	--Setting Channel4 min: 656
+	--Setting Channel4 max: 4691.9375
+	--Starting AP axis determination
+	--Anterior point: 281, 116
+	--Posterior point: 390.1667, 167.5
+	--AP axis angle: 25.2559 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 117 x 46, AP angle 25.2559 degrees. Bounding box: 269, 92, 126, 93
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep2/03_output/250806_R2_image_05_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
+
+Now processing file:	250806_R2_image_10_R3D.dv
+	--Starting Z-projection
+	--There are 57 slices
+	--Splice Depth is: 7
+	--Z-projection complete from 18 to 24 using Sum Slices method.
+	--Setting Channel1 min: 911
+	--Setting Channel1 max: 16372.25
+	--Setting Channel2 min: 1574.5859
+	--Setting Channel2 max: 13283.8906
+	--Setting Channel3 min: 656
+	--Setting Channel3 max: 4691.9375
+	--Setting Channel4 min: 656
+	--Setting Channel4 max: 4691.9375
+	--Starting AP axis determination
+	--Anterior point: 488, 713
+	--Posterior point: 442.1667, 818.1667
+	--AP axis angle: 113.5484 degrees (image pixel data not rotated)
+	--Get Region of Interest (ROI) Selection
+	--Selection of ROI complete. Rectangle dimensions: 117 x 46, AP angle 113.5484 degrees. Bounding box: 427, 683, 90, 126
+	--Saving ROI overlay image (.tif)
+	--Saved: /Users/ambikabasu/Nishimura_lab/Macros/QuantificationNuclearMembrane /2Cell/250806_set3_imb2_rep2/03_output/250806_R2_image_10_R3D_ROI.tif
+	--Select Channel 01
+	--Select Channel 02
