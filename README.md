@@ -38,4 +38,6 @@ This repository accompanies the manuscript "Differential mRNA localization of ka
 Click on the links below (or directories above) to navigate to each directory:
 
   - [01_FIJI_analysis_Celegans]. Accompanies Figure 1
-  - [02_R_analysis_Celegans](https://github.com/erinosb/basu_imb2_tnpo1/02_R_analysis_Celegans).Accompanies Figure 1
+  - [02_R_analysis_Celegans](https://github.com/erinosb/basu_imb2_tnpo1/tree/main/02_R_analysis_Celegans). Accompanies Figure 1
+  - [03_FIJI_analysis_Hsapiens]. Accompanies Figure 1
+  - [04_R_analysis_Hsapiens](https://github.com/erinosb/basu_imb2_tnpo1/tree/main/04_R_analysis_Hsapiens). Accompanies Figure 1
