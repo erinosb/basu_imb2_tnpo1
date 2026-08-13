@@ -169,7 +169,7 @@ norm_total <- norm_total %>%
 
 table(norm_total$channel, norm_total$treatment_type)
 
-norm_total
+#head(norm_total)
 
 ```
 

@@ -200,24 +200,8 @@ table(norm_total$channel, norm_total$treatment_type)
     ##   ch2     0   3439
 
 ``` r
-norm_total
+#head(norm_total)
 ```
-
-    ## # A tibble: 6,878 × 10
-    ##    strain aligned_row date   mRNA1 mRNA2 embryoID channel intensity
-    ##    <chr>        <dbl> <chr>  <chr> <chr> <chr>    <fct>       <dbl>
-    ##  1 U2OS           -90 231206 gapdh tnpo1 image01  ch1         3823.
-    ##  2 U2OS           -89 231206 gapdh tnpo1 image01  ch1         3819.
-    ##  3 U2OS           -88 231206 gapdh tnpo1 image01  ch1         3844.
-    ##  4 U2OS           -87 231206 gapdh tnpo1 image01  ch1         3849.
-    ##  5 U2OS           -86 231206 gapdh tnpo1 image01  ch1         3818.
-    ##  6 U2OS           -85 231206 gapdh tnpo1 image01  ch1         3784.
-    ##  7 U2OS           -84 231206 gapdh tnpo1 image01  ch1         3785.
-    ##  8 U2OS           -83 231206 gapdh tnpo1 image01  ch1         3818.
-    ##  9 U2OS           -82 231206 gapdh tnpo1 image01  ch1         3844.
-    ## 10 U2OS           -81 231206 gapdh tnpo1 image01  ch1         3858.
-    ## # ℹ 6,868 more rows
-    ## # ℹ 2 more variables: normalized_intensity <dbl>, treatment_type <chr>
 
 ------------------------------------------------------------------------
 

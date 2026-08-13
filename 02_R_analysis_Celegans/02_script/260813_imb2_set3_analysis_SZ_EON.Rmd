@@ -77,7 +77,7 @@ colnames(df_2) <- c("file", "channel", col_times)
 colnames(df_3) <- c("file", "channel", col_times)
 colnames(df_4) <- c("file", "channel", col_times)
 
-head(df_1)
+#head(df_1)
 
 ```
 
@@ -112,7 +112,7 @@ df_3_pt <- addInTimepoints(annotate_df(df_3), df_1)
 df_4_pt <- addInTimepoints(annotate_df(df_4), df_1)
 
 # Sanity check 
-head(df_4_pt)
+#head(df_4_pt)
 #df_4_pt[110:120,]
 
 ```
