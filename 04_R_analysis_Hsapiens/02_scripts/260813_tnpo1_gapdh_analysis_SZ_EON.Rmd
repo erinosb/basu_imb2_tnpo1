@@ -51,11 +51,7 @@ df_1 <- read.table("../01_input/2026-8-3_1411_datafile_for_231206_imaging_U2OS.t
                         header = FALSE, sep = "\t")
 df_2 <- read.table("../01_input/2026-8-3_1419_datafile_for_250802A_TNPO1_U2OS_rep2.txt",
                         header = FALSE, sep = "\t")
-df_3 <- read.table("../01_input/2026-8-3_1428_datafile_for_250802A_TNPO1_U2OS_rep2.txt",
-                        header = FALSE, sep = "\t")
-df_4 <- read.table("../01_input/2026-8-3_1431_datafile_for_250802B_TNPO1_U2OS_rep3.txt",
-                       header = FALSE, sep = "\t")
-df_5 <- read.table("../01_input/2026-8-3_1438_datafile_for_250802B_TNPO1_U2OS_rep3.txt",
+df_3 <- read.table("../01_input/2026-8-3_1431_datafile_for_250802B_TNPO1_U2OS_rep3.txt",
                         header = FALSE, sep = "\t")
 
 # Check dimensions
@@ -64,14 +60,10 @@ df_5 <- read.table("../01_input/2026-8-3_1438_datafile_for_250802B_TNPO1_U2OS_re
 # dim(df_1)
 # dim(df_2)
 # dim(df_3)
-# dim(df_4)
-# dim(df_5)
 
 df_1 <- df_1[,1:183]
 df_2 <- df_2[,1:183]
 df_3 <- df_3[,1:183]
-df_4 <- df_4[,1:183]
-df_5 <- df_5[,1:183]
 
 # The value 181 is actually determined by the dimensions, just subtract 2 from what you get in dimensions
 
@@ -82,8 +74,6 @@ col_times <- paste(rep(1:181), sep = "")
 colnames(df_1) <- c("file", "channel", col_times)
 colnames(df_2) <- c("file", "channel", col_times)
 colnames(df_3) <- c("file", "channel", col_times)
-colnames(df_4) <- c("file", "channel", col_times)
-colnames(df_5) <- c("file", "channel", col_times)
 # dim(df_1)
 ```
 
@@ -116,8 +106,6 @@ addInTimepoints <- function(tibble, ref_table) {
 df_1_pt <- addInTimepoints(annotate_df(df_1), df_1) # Use first dataframe as reference 
 df_2_pt <- addInTimepoints(annotate_df(df_2), df_1)
 df_3_pt <- addInTimepoints(annotate_df(df_3), df_1)
-df_4_pt <- addInTimepoints(annotate_df(df_4), df_1)
-df_5_pt <- addInTimepoints(annotate_df(df_5), df_1)
 
 # Sanity check 
 #head(df_1_pt)
@@ -134,8 +122,7 @@ df_5_pt <- addInTimepoints(annotate_df(df_5), df_1)
 
 # Concatenate the dataframes 
 all_data <- rbind(
-  df_1_pt, df_2_pt, df_3_pt, df_4_pt, df_5_pt
-)
+  df_1_pt, df_2_pt, df_3_pt)
 
 center <- ceiling(181/2) # Using dims, find center point 
 center
