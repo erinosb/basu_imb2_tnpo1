@@ -1,0 +1,3 @@
+treatment_type,channel,n,min_log2fc,median_log2fc,mean_log2fc,max_log2fc
+gapdh,ch1,20,-0.634,0.203,0.171,0.71
+tnpo-1,ch2,20,-0.033,0.158,0.179,0.671

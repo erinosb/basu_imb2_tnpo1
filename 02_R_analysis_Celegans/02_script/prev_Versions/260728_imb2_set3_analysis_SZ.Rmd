@@ -1,0 +1,418 @@
+---
+title: "Ambika: imb-2 set-3 nuclear membrane signal quantification and analysis"
+author: "Sam Zavislan-Pullaro"
+date: "2026-07-28"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    theme: flatly
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,
+                      fig.width = 10, fig.height = 6)
+```
+
+## Load libraries
+
+```{r setup}
+library(tidyverse)
+library(data.table)
+library(rstatix)
+library(ggrepel)
+library(gridExtra)
+```
+
+---
+
+## Import data
+
+Note: channel 1 = imb-2 mRNA | channel 2 = set-3 mRNA
+
+Strain: N2 
+
+```{r import}
+
+# Load the data
+# Only need to replace name of file. EX: ("../01_input/<NAME_OF_DATAFILE.txt>",header = FALSE, sep = "\t")
+
+df_1 <- read.table("/Users/ambikabasu/Nishimura_lab/Macros/03_R_analysis_imb2/01_input/2026-7-20_1510_datafile_for_250806_set3_imb2_rep1.txt",
+                        header = FALSE, sep = "\t")
+df_2 <- read.table("/Users/ambikabasu/Nishimura_lab/Macros/03_R_analysis_imb2/01_input/2026-7-20_1518_datafile_for_250806_set3_imb2_rep2.txt",
+                        header = FALSE, sep = "\t")
+df_3 <- read.table("/Users/ambikabasu/Nishimura_lab/Macros/03_R_analysis_imb2/01_input/2026-7-20_1525_datafile_for_250806_set3_imb2_rep3.txt",
+                        header = FALSE, sep = "\t")
+df_4 <- read.table("/Users/ambikabasu/Nishimura_lab/Macros/03_R_analysis_imb2/01_input/2026-8-3_128_datafile_for_260527_N2_imb2_set3.txt",
+                        header = FALSE, sep = "\t")
+df_5 <- read.table("/Users/ambikabasu/Nishimura_lab/Macros/03_R_analysis_imb2/01_input/2026-8-3_1212_datafile_for_260527_N2_imb2_set3.txt",
+                        header = FALSE, sep = "\t")
+
+# Check dimensions
+# In this case, all data files should have vector length = 121. This is determined by the length of the ROI box in FIJI
+
+dim(df_1)
+dim(df_2)
+dim(df_3)
+dim(df_4)
+dim(df_5)
+
+# The value 119 is actually determined by the dimensions, just subtract 2 from what you get in dimensions
+
+col_times <- paste(rep(1:119), sep = "") 
+
+# Set column names for the dataframes 
+
+colnames(df_1) <- c("file", "channel", col_times)
+colnames(df_2) <- c("file", "channel", col_times)
+colnames(df_3) <- c("file", "channel", col_times)
+colnames(df_4) <- c("file", "channel", col_times)
+colnames(df_5) <- c("file", "channel", col_times)
+
+```
+
+---
+
+## Create annotation columns and add timepoints
+
+Timepoints are treated as positions along line scan
+
+```{r annotate}
+
+# Helper function: pivot longer and annotate 
+annotate_df <- function(df) {
+  df[2:nrow(df), 1:121] %>% # 121 comes from dimensions
+    separate_wider_delim(file, delim = "_",
+                         names = c("date", "strain", "mRNA1", "mRNA2", "embryoID", NA)) %>%
+    pivot_longer(cols = `1`:`119`, names_to = "xpoint", values_to = "intensity") %>%
+    mutate(unique_id = paste(date, strain, mRNA1, mRNA2, embryoID, channel, sep = "_"))
+}
+
+# Helper function: add timepoints from the header row of any loaded table
+addInTimepoints <- function(tibble, ref_table) {
+  timepoints <- as.vector(unlist(ref_table[1, 3:121]))
+  repnumb    <- nrow(tibble) / 119 
+  tibble::add_column(tibble, timepoints = rep(timepoints, repnumb), .after = "xpoint")
+}
+
+# Add timepoints as proxy for pixel position along line scan 
+df_1_pt <- addInTimepoints(annotate_df(df_1), df_1) # Use first dataframe as reference 
+df_2_pt <- addInTimepoints(annotate_df(df_2), df_1)
+df_3_pt <- addInTimepoints(annotate_df(df_3), df_1)
+df_4_pt <- addInTimepoints(annotate_df(df_4), df_1)
+df_5_pt <- addInTimepoints(annotate_df(df_5), df_1)
+
+# Sanity check 
+head(df_1_pt)
+
+```
+
+---
+
+## Merge all data and apply fixed coordinate alignment
+
+L4440 controls are included once (shared reference across all experiments).
+Peak alignment is skipped: every embryo receives the same fixed coordinate,
+recentered so xpoint 1:333 maps to aligned_row -166:166.
+
+```{r merge_align}
+
+# Concatenate the dataframes 
+all_data <- rbind(
+  df_1_pt, df_2_pt, df_3_pt, df_4_pt, df_5_pt
+)
+
+center <- ceiling(119/2) # Using dims, find center point 
+center
+
+dt <- as.data.table(all_data)
+dt$xpoint <- as.integer(dt$xpoint)
+dt[, aligned_row := xpoint - center]
+
+fwrite(dt, "/Users/ambikabasu/Nishimura_lab/Macros/03_R_analysis_imb2/03_output/aligned_data.csv")
+
+total_align_long <- dt %>%
+  select(strain, aligned_row, unique_id, intensity)
+
+cat("Total rows:", nrow(total_align_long), "\n")
+cat("Unique embryo IDs:", n_distinct(total_align_long$unique_id), "\n")
+
+head(total_align_long)
+
+```
+
+---
+
+## Normalize
+
+Each embryo is normalized to its own mean intensity (per embryo per channel).
+
+```{r normalize}
+
+norm_total <- total_align_long %>%
+  separate_wider_delim(unique_id, delim = "_",
+                       names = c("date", NA, "mRNA1", "mRNA2", "embryoID", "channel")) %>%
+  group_by(date, embryoID, channel, mRNA1, mRNA2) %>%
+  mutate(normalized_intensity = intensity / mean(intensity, na.rm = TRUE)) %>%
+  ungroup()
+
+treatment_order <- c("ch2", "ch1")
+norm_total$channel <- factor(norm_total$channel, levels = treatment_order)
+
+# ch1 = imb-2, ch2 = set-3
+norm_total <- norm_total %>%
+  mutate(treatment_type = case_when(
+    channel == "ch1" ~ "imb-2",
+    channel == "ch2" ~ "set-3",
+    TRUE ~ NA_character_
+  ))
+
+table(norm_total$channel, norm_total$treatment_type)
+
+```
+
+---
+
+## Color palettes
+
+```{r palettes}
+
+treatment_colors <- c(
+  "ch1" = "#2166AC",   # imb-2 — dark blue
+  "ch2" = "#4D4D4D"    # set-3 — dark gray
+)
+type_colors <- treatment_colors
+
+channel_labels <- c("ch1" = "imb-2 mRNA", "ch2" = "set-3 mRNA")
+
+```
+
+---
+
+## Section 1: Individual normalized line scans
+
+All embryo-level line scans, faceted by channel and treatment.
+
+```{r linescans_individual, fig.height = 8, fig.width = 10}
+
+p_linescan_individual <- ggplot(norm_total,
+       aes(x = aligned_row, y = normalized_intensity,
+           group = interaction(date, embryoID),
+           color = channel)) +
+  geom_line(alpha = 0.6, linewidth = 0.3) +
+  scale_color_manual(values = treatment_colors) +
+  facet_wrap(~ channel, labeller = labeller(channel = channel_labels)) +
+  labs(
+    title = "Individual normalized line scans — all treatments",
+    x     = "Position along line scan",
+    y     = "Normalized intensity",
+    color = "Treatment"
+  ) +
+  guides(color = "none") +
+  theme_bw(base_size = 11) +
+  theme(strip.text = element_text(face = "bold"))
+p_linescan_individual
+
+
+```
+
+---
+
+## Section 2: Mean +- SD line scans
+
+### 2a. One panel per channel
+
+```{r linescans_mean_overlaid, fig.height = 6, fig.width = 12}
+
+mean_signal <- norm_total %>%
+  group_by(aligned_row, channel) %>%
+  summarize(
+    mean_signal = mean(normalized_intensity, na.rm = TRUE),
+    sd_signal   = sd(normalized_intensity,   na.rm = TRUE),
+    .groups     = "drop"
+  ) %>%
+  mutate(
+    ymeanmax = mean_signal + sd_signal,
+    ymeanmin = mean_signal - sd_signal
+  )
+
+p_linescan_mean <- ggplot(mean_signal,
+       aes(x = aligned_row, y = mean_signal,
+           group = channel)) +
+  geom_ribbon(aes(ymin = ymeanmin, ymax = ymeanmax,
+                  fill = channel), alpha = 0.2, color = NA) +
+  geom_line(aes(color = channel), linewidth = 0.8) +
+  scale_color_manual(values = treatment_colors) +
+  scale_fill_manual(values  = treatment_colors) +
+  facet_wrap(~ channel, labeller = labeller(channel = channel_labels)) +
+  labs(
+    title = "Mean +- SD line scans, per channel",
+    x     = "Position",
+    y     = "Mean normalized intensity"
+  ) +
+  guides(color = "none", fill = "none") +
+  theme_bw(base_size = 11) +
+  theme(strip.text = element_text(face = "bold"))
+ p_linescan_mean
+
+```
+
+---
+
+## Section 3: log2 fold change enrichment
+
+Ratio of normalized intensity at position 1 versus the mean of positions
+-100 and +100. Higher values indicate more enriched localization signal
+(consistent with membrane localization).
+
+```{r}
+
+peaks_and_valleys <- norm_total %>%
+  filter(aligned_row %in% c(-50, 1, 50))
+
+nest_pandv <- peaks_and_valleys %>%
+  group_by(date, mRNA1, mRNA2, embryoID, channel) %>%
+  nest()
+
+my_calc2 <- function(df) {
+  df$normalized_intensity[df$aligned_row == 1] /
+    mean(df$normalized_intensity[df$aligned_row %in% c(-50, 50)])
+}
+
+foldChange_calc <- nest_pandv %>%
+  mutate(fc_enrich = map_dbl(data, my_calc2)) %>%
+  mutate(
+    log2_fc        = log(fc_enrich, base = 2),
+    treatment_type = case_when(
+      channel == "ch1" ~ "imb-2",
+      channel == "ch2" ~ "set-3",
+      TRUE ~ NA_character_
+    ),
+    channel        = factor(channel, levels = treatment_order)
+  )
+
+summary(foldChange_calc$log2_fc)
+
+summary(foldChange_calc$log2_fc)
+
+```
+
+### 3a. Merged boxplot, x-axis by treatment, faceted by channel
+
+```{r boxplot_merged, fig.height = 6, fig.width = 8}
+
+foldChange_calc <- foldChange_calc %>%
+  mutate(treatment_type = factor(treatment_type, levels = c("set-3", "imb-2")))
+
+imb2_ch2_ref <- foldChange_calc %>%
+  ungroup() %>%
+  filter(channel == "ch2") %>%
+  summarize(med = median(log2_fc, na.rm = TRUE)) %>%
+  mutate(channel = "ch2")
+
+p_merged <- ggplot(foldChange_calc,
+                   aes(x = treatment_type,
+                       y = log2_fc,
+                       fill = treatment_type)) +
+  geom_boxplot(outlier.shape = NA, width = 0.6) +
+  geom_jitter(aes(color = treatment_type),
+              position = position_jitterdodge(jitter.width = 0.25),
+              size = 1.5, alpha = 0.7) +
+  scale_fill_manual(
+    values = type_colors,
+    guide  = "none"
+  ) +
+  scale_color_manual(
+    values = c("imb-2" = "black", "set-3" = "black"),
+    guide  = "none"
+  ) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  scale_y_continuous(limits = c(-0.5, 1.5)) +
+  labs(
+    title = "log2 enrichment at position 0 vs ±50",
+    x     = "mRNA",
+    y     = "log2 (intensity at 0 / mean intensity at ±50)",
+    fill  = NULL
+  ) +
+  theme_classic(base_size = 12) +
+  theme(
+    axis.text.x     = element_text(angle = 35, hjust = 1, face = "italic"),
+    strip.text      = element_text(face = "bold"),
+    legend.position = "none"
+  )
+
+p_merged
+
+```
+
+---
+
+## Summary statistics
+
+```{r summary_stats}
+
+summary_stats_table <- foldChange_calc %>%
+  group_by(treatment_type, channel) %>%
+  summarise(
+    n             = n(),
+    min_log2fc    = round(min(log2_fc,    na.rm = TRUE), 3),
+    median_log2fc = round(median(log2_fc, na.rm = TRUE), 3),
+    mean_log2fc   = round(mean(log2_fc,   na.rm = TRUE), 3),
+    max_log2fc    = round(max(log2_fc,    na.rm = TRUE), 3),
+    .groups = "drop"
+  ) %>%
+  arrange(channel, treatment_type)
+
+print(summary_stats_table, n = Inf)
+
+```
+
+---
+
+## Statistics - Pairwise Wilcoxon vs L4440
+
+```{r pairwise_wilcox}
+
+# Wilcoxon test comparing set-3 vs imb-2 enrichment
+pairwise_stats <- foldChange_calc %>%
+  ungroup() %>%
+  wilcox_test(log2_fc ~ treatment_type) %>%
+  adjust_pvalue(method = "BH") %>%
+  add_significance()
+
+pairwise_stats
+
+```
+
+---
+
+## Session info
+
+```{r sessionInfo}
+sessionInfo()
+```
+
+---
+
+## Export plots and stats
+
+```{r export_outputs}
+
+today      <- format(Sys.Date(), "%y%m%d")
+output_dir <- "../03_output"
+dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
+
+ggsave(file.path(output_dir, paste0(today, "_boxplot_merged.svg")), plot = p_merged,
+       width = 12, height = 7)
+ggsave(file.path(output_dir, paste0(today, "_linescan_individual.svg")), plot = p_linescan_individual,
+       width = 14, height = 12)
+ggsave(file.path(output_dir, paste0(today, "_linescan_mean.svg")), plot = p_linescan_mean,
+       width = 14, height = 12)
+
+write_csv(summary_stats_table, file.path(output_dir, paste0(today, "_summary_stats.csv")))
+write_csv(pairwise_stats, file.path(output_dir, paste0(today, "_pairwise_wilcoxon_stats.csv")))
+
+cat("Exported to:", normalizePath(output_dir), "\n")
+
+```
